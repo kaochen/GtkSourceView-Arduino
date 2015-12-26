@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+ Authors: kao_chen
+ Copyright (C) 2015 kao_chen <kaochen2[at]gmail.com>
+
+ This library is free software; you can redistribute it and/or
+ modify it under the terms of the GNU Library General Public
+ License as published by the Free Software Foundation; either
+ version 2 of the License, or (at your option) any later version.
+
+ This library is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ Library General Public License for more details.
+
+ You should have received a copy of the GNU Library General Public
+ License along with this library; if not, write to the
+ Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ Boston, MA 02111-1307, USA.
+
+-->
+<!--
+ This file is a GtkSourceView lang file with specific keywords used to code for the Arduino boards.
+It add the standard functions from the Arduino language reference page : https://www.arduino.cc/en/Reference/HomePage
+I don't know yet if it's useful to add  specific stuff from the specific libraries.
+-->
+
+<language id="arduino" _name="Arduino" version="2.0" _section="Source">
+  <metadata>
+    <property name="mimetypes">text/x-arduino;text/plain</property>
+    <property name="globs">*.pde;*.ino</property>
+    <property name="line-comment-start">//</property>
+    <property name="block-comment-start">/*</property>
+    <property name="block-comment-end">*/</property>
+  </metadata>
+
+  <styles>
+    <style id="type" _name="Data Type" map-to="c:type"/>
+    <style id="boolean" _name="Boolean value" map-to="c:boolean"/>
+    <style id="function" _name="Function" map-to="def:function"/>
+  </styles>
+
+  <definitions>
+        <context id="arduino-list">
+            <include>
+		    <context id="function" style-ref="function">
+			<keyword>boolean</keyword>			
+		    <!-- Digital I/O -->
+			<keyword>pinMode</keyword>
+			<keyword>digitalWrite</keyword>
+			<keyword>digitalRead</keyword>
+		    <!-- Analog I/O -->
+			<keyword>analogReference</keyword>
+			<keyword>analogWrite</keyword>
+			<keyword>analogRead</keyword>
+		    <!-- Due & Zero only -->
+			<keyword>analogReadResolution</keyword>
+			<keyword>analogWriteResolution</keyword>
+		    <!-- Advanced I/O -->
+			<keyword>tone</keyword>
+			<keyword>notTone</keyword>
+			<keyword>shiftOut</keyword>
+			<keyword>shiftIn</keyword>
+			<keyword>pulseIn</keyword>
+		    <!-- Time -->
+			<keyword>millis</keyword>
+			<keyword>micros</keyword>
+			<keyword>delay</keyword>
+			<keyword>delayMicroseconds</keyword>
+		    <!-- Math -->
+			<keyword>min</keyword>
+			<keyword>max</keyword>
+			<keyword>abs</keyword>
+			<keyword>constrain</keyword>
+			<keyword>map</keyword>
+			<keyword>pow</keyword>
+			<keyword>sqrt</keyword>
+		  <!--  Trigonometry -->
+			<keyword>sin</keyword>
+			<keyword>cos</keyword>
+			<keyword>tan</keyword>
+		  <!--  Characters  -->
+			<keyword>isAlphaNumeric</keyword>
+			<keyword>isAscii</keyword>
+			<keyword>isWhitespace</keyword>
+			<keyword>isControl</keyword>
+			<keyword>isDigit</keyword>
+			<keyword>isGraph</keyword>
+			<keyword>isLowerCase</keyword>
+			<keyword>isPrintable</keyword>
+			<keyword>isPunct</keyword>
+			<keyword>isSpace</keyword>
+			<keyword>isUpperCase</keyword>
+			<keyword>isHexadecimalDigit</keyword>
+		 <!--  Random Numbers  -->
+			<keyword>randomSeed</keyword>
+			<keyword>random</keyword> 
+		 <!--  Bits and Bytes  -->
+			<keyword>lowByte</keyword>
+			<keyword>highByte</keyword>
+			<keyword>bitRead</keyword>
+			<keyword>bitWrite</keyword>
+			<keyword>bitSet</keyword>
+			<keyword>bitClear</keyword>
+			<keyword>bit</keyword> 
+		 <!--  External Interrupts  -->
+			<keyword>attachInterrupt</keyword>
+			<keyword>detachInterrupt</keyword> 
+		 <!--  Interrupts  -->
+			<keyword>interrupts</keyword>
+			<keyword>noInterrupts</keyword> 
+		 <!--  Communication  -->
+			<keyword>Serial</keyword>
+			<keyword>Stream</keyword>
+			<keyword>available</keyword>
+			<keyword>availableForWrite</keyword>
+			<keyword>begin</keyword>
+			<keyword>end</keyword>
+			<keyword>find</keyword>
+			<keyword>findUntil</keyword>
+			<keyword>flush</keyword>
+			<keyword>parseFloat</keyword>
+			<keyword>parseInt</keyword>
+			<keyword>peek</keyword>
+			<keyword>print</keyword>
+			<keyword>println</keyword>
+			<keyword>read</keyword>
+			<keyword>readBytes</keyword>
+			<keyword>readBytesUntil</keyword>
+			<keyword>readString</keyword>
+			<keyword>readStringUntil</keyword>
+			<keyword>setTimeout</keyword>
+			<keyword>write</keyword>
+			<keyword>serialEvent</keyword> 
+		 <!--  USB (32u4 based boards and Due/Zero only)  -->
+			<keyword>Keyboard</keyword>
+			<keyword>press</keyword>
+			<keyword>release</keyword>
+			<keyword>releaseAll</keyword> 
+			<keyword>Mouse</keyword>
+			<keyword>click</keyword>
+			<keyword>isPressed</keyword>
+		    </context>
+
+		    <context id="types" style-ref="type">
+		      <keyword>setup</keyword>
+		      <keyword>loop</keyword>
+		    </context>
+
+		    <context id="boolean" style-ref="boolean">
+		      <keyword>HIGH</keyword>
+		      <keyword>LOW</keyword>
+		      <keyword>OUTPUT</keyword>
+		      <keyword>INPUT</keyword>
+		      <keyword>INPUT_PULLUP</keyword>
+		      <keyword>LED_BUILTIN</keyword>
+		    </context>
+          </include>
+        </context>
+
+    <!-- actual language definition: Arduino-specific stuff plus everything from C++ and C -->
+    <context id="arduino" class="no-spell-check">
+      <include>
+        <context ref="arduino-list"/>
+        <context ref="cpp:cpp-proper"/>
+        <context ref="c:c"/>
+        <context ref="function"/>
+      </include>
+    </context>
+
+  </definitions>
+</language>
